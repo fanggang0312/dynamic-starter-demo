@@ -1,0 +1,40 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    #配置hikari连接池
+    hikari:
+      minimum-idle: 4
+      maximum-pool-size: 16
+      connection-timeout: 10000
+      idle-timeout: 30000
+      connection-init-sql: set names utf8mb4
+    #动态数据源配置
+    dynamic:
+      #主数据源
+      primary: master
+      datasource:
+        #数据源a01
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: 123456
+        #数据源a02
+        slave:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://39.106.225.113:3306/hzfi_zx?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: hzzx
+          password: hzzx@113
+
+
+logging:
+  level:
+    cn.mrxionge.bootdemo: debug
+    org.springframework.web: debug
+    org.springframework.data: debug
+
+
+
+
+
